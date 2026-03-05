@@ -1,0 +1,298 @@
+@import "tailwindcss";
+
+:root {
+  height: 100%;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+/* ===== Theme Variables ===== */
+html.dark {
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #151515;
+  --bg-accent: #282828;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --border-color: #6b7280;
+  --border-accent: #282828;
+  --accent-primary: #ffffff;
+  --accent-thirdary: #ffffff;
+  --accent-secondary: #858585;
+  --btn-primary-bg: #282828;
+  --btn-secondary-bg: #696969;
+  --link-color: #9ca3af;
+  --link-hover: #ffffff;
+  --card-overlay: rgba(0, 0, 0, 0.2);
+  --card-overlay-hover: rgba(0, 0, 0, 0.8);
+  --switcher-bg: rgba(255, 255, 255, 0.05);
+  --switcher-border: rgba(255, 255, 255, 0.2);
+  --switcher-border-hover: #ffffff;
+  --rotating-text: #ffffff;
+  --circle-color: #FFFFFF;
+  --photo-filter: grayscale(1);
+}
+
+html.light {
+  --bg-primary: #F8F7F4;
+  --bg-secondary: #FFFFFF;
+  --bg-accent: #E8F0FE;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a6a;
+  --text-muted: #7C7C9A;
+  --border-color: #4285F4;
+  --border-accent: #34A853;
+  --accent-primary: #FBBC05;
+  --accent-thirdary: #EA4335;
+  --accent-secondary: #34A853;
+  --btn-primary-bg: #4285F4;
+  --btn-secondary-bg: #34A853;
+  --link-color: #4a4a6a;
+  --link-hover: #4285F4;
+  --card-overlay: rgba(66, 133, 244, 0.05);
+  --card-overlay-hover: rgba(66, 133, 244, 0.15);
+  --switcher-bg: rgba(255, 255, 255, 0.08);
+  --switcher-border: rgba(66, 133, 244, 0.25);
+  --switcher-border-hover: #4285F4;
+  --rotating-text: #EA4335;
+  --circle-color: #FBBC05;
+  --photo-filter: grayscale(0);
+}
+
+/* ===== View Transition: Circular Reveal ===== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* ===== Fonts ===== */
+@layer base {
+  @font-face {
+    font-family: "lack-regular";
+    src: url("/fonts/lack-regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "lack-italic";
+    src: url("/fonts/lack-italic.woff2") format("woff2");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "lack-line";
+    src: url("/fonts/lack-line-regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "lack-line-italic";
+    src: url("/fonts/lack-line-italic.woff2") format("woff2");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+}
+
+@theme {
+  --color-dark-light: #151515;
+  --color-dark: #0d0d0d;
+  --color-accent: #282828;
+  --font-family-lack: "lack-regular", sans-serif;
+  --font-family-lack-italic: "lack-italic", sans-serif;
+  --font-family-lack-line: "lack-line", sans-serif;
+  --font-family-lack-line-italic: "lack-line-italic", sans-serif;
+}
+
+/* ===== Animated Borders ===== */
+@layer utilities {
+  @keyframes border-rainbow {
+  0%, 100% { border-color: #EA4335; }
+  25% { border-color: #34A853; }     
+  50% { border-color: #4285F4; }     
+  75% { border-color: #FBBC05; }     
+}
+
+.animate-border-rainbow {
+  animation: border-rainbow 8s infinite linear;
+  border-width: 1px; 
+  border-style: solid;
+}
+
+  .border-marching {
+    --dash-size: 20px;
+    --line-thickness: 0.9px;
+    background-image:
+      linear-gradient(
+        to right,
+        var(--border-color, #6b7280) 33%,
+        transparent 33%
+      ),
+      linear-gradient(to right, var(--border-color) 33%, transparent 33%),
+      linear-gradient(to bottom, var(--border-color) 33%, transparent 33%),
+      linear-gradient(to bottom, var(--border-color) 33%, transparent 33%);
+    background-position: top, bottom, left, right;
+    background-size:
+      var(--dash-size) var(--line-thickness),
+      var(--dash-size) var(--line-thickness),
+      var(--line-thickness) var(--dash-size),
+      var(--line-thickness) var(--dash-size);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    animation: marching-ants var(--custom-speed, 1.4s) linear infinite;
+  }
+
+  @keyframes marching-ants {
+    from {
+      background-position:
+        0 top,
+        0 bottom,
+        left 0,
+        right 0;
+    }
+    to {
+      background-position:
+        var(--dash-size) top,
+        calc(var(--dash-size) * -1) bottom,
+        left var(--dash-size),
+        right calc(var(--dash-size) * -1);
+    }
+  }
+
+  .border-circle-dashed {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='50%25' cy='50%25' r='48%25' fill='none' stroke='%236b7280' stroke-width='2' stroke-dasharray='10%2c 15' stroke-linecap='round'/%3e%3c/svg%3e");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  @keyframes rotate-circle {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .rotate-animation {
+    animation: rotate-circle linear infinite;
+  }
+}
+
+/* ===== Buttons (theme-aware) ===== */
+.btn-primary {
+  @apply cursor-pointer transition-all duration-200 relative top-0 right-0;
+  background-color: var(--btn-primary-bg);
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+}
+
+.btn-primary:hover {
+  top: -6px;
+  right: -6px;
+}
+
+.btn-secondary {
+  @apply cursor-pointer transition-all duration-200 relative top-0 right-0;
+  background-color: var(--btn-secondary-bg);
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+}
+
+.btn-secondary:hover {
+  top: -6px;
+  right: -6px;
+}
+
+/* ===== Static dashed border (theme-aware) ===== */
+.border-static {
+  --custom-border-color-resolved: var(--custom-border-color, var(--border-color));
+  --dash-size: 20px;
+  --line-thickness: 0.9px;
+  background-image:
+    linear-gradient(to right, var(--custom-border-color-resolved) 33%, transparent 33%),
+    linear-gradient(to right, var(--custom-border-color-resolved) 33%, transparent 33%),
+    linear-gradient(to bottom, var(--custom-border-color-resolved) 33%, transparent 33%),
+    linear-gradient(to bottom, var(--custom-border-color-resolved) 33%, transparent 33%);
+  background-position: top, bottom, left, right;
+  background-size:
+    var(--dash-size) var(--line-thickness),
+    var(--dash-size) var(--line-thickness),
+    var(--line-thickness) var(--dash-size),
+    var(--line-thickness) var(--dash-size);
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+}
+
+.border-static-bolder {
+  --custom-border-color-resolved: var(--custom-border-color, var(--border-color));
+  --dash-size: 35px;
+  --line-thickness: 2px;
+  background-image:
+    linear-gradient(to right, var(--custom-border-color-resolved) 33%, transparent 33%),
+    linear-gradient(to right, var(--custom-border-color-resolved) 33%, transparent 33%),
+    linear-gradient(to bottom, var(--custom-border-color-resolved) 33%, transparent 33%),
+    linear-gradient(to bottom, var(--custom-border-color-resolved) 33%, transparent 33%);
+  background-position: top, bottom, left, right;
+  background-size:
+    var(--dash-size) var(--line-thickness),
+    var(--dash-size) var(--line-thickness),
+    var(--line-thickness) var(--dash-size),
+    var(--line-thickness) var(--dash-size);
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+}
+
+/* ===== Animations ===== */
+@keyframes slide-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+.animate-word {
+  animation: slide-up 0.8s ease-out forwards;
+}
+
+input::placeholder {
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  opacity: 1;
+}
+
+input:-ms-input-placeholder { color: var(--text-secondary) }
+input::-ms-input-placeholder { color: var(--text-secondary) }
+
+textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 1;
+}
+
+textarea:-ms-input-placeholder { color: var(--text-secondary) }
+textarea::-ms-input-placeholder { color: var(--text-secondary) }

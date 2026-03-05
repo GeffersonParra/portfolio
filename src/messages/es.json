@@ -1,0 +1,73 @@
+{
+  "Navigation": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "brief": "Trayectoria",
+    "contact": "Contacto"
+  },
+  "Texts": {
+    "hi": "Hola!",
+    "hero": "Soy Gefferson, un ",
+    "herobtn1": "Conversemos!",
+    "herobtn2": "Descargar CV",
+    "words": "Desarrollador,Entusiasta,Detallista,Aprendiz Constante",
+    "specialized": "Especializado en el Desarrollo Web",
+    "about": "Sobre mí",
+    "about_me": "Soy un desarrollador Full-Stack con experiencia construyendo sistemas reales usando Django, DRF (Django Rest Framework), Laravel REST y React.",
+    "about_me2": "Me encanta trabajar en proyectos donde puedo resolver problemas específicos: Automatizar tareas, Convertir lógica de negocio a código, Mejorar UI/UX y Estructurar datos de manera eficiente.",
+    "projects": "Proyectos",
+    "viewOnGithub": "Ver en Github",
+    "experienceTitle": "Experiencia Profesional",
+    "educationTitle": "Educación",
+    "jobTitle": "Experiencia Laboral",
+    "currentlyLearningTitle": "Actualmente Aprendiendo",
+    "currentlyLearning": "Google Cloud Platform (GCP) en Google Skills",
+    "contactMeTitle": "Contáctame",
+    "questionsTitle": "Preguntas?",
+    "alwaysAvailableAt": "Me encuentro siempre disponible en geffdeveloper@gmail.com",
+    "currentLocation": "Ubicación Actual",
+    "yourName": "Tu Nombre",
+    "yourSubject": "Asunto",
+    "yourEmail": "Tu Correo Electrónico",
+    "yourMessage": "Tu Mensaje",
+    "successMessage": "Mensaje enviado exitosamente.",
+    "errorMessage": "Ha ocurrido un error al enviar el mensaje, intenta nuevamente.",
+    "catchMessage": "Ha ocurrido un error de conexión."
+  },
+  "Education": [
+    {
+      "yearEnd": "2025",
+      "location": "Bogotá D.C, Colombia",
+      "title": "Aprendizaje Autónomo — Plataformas Online (Platzi/Udemy)",
+      "subtexts": [
+        "Administración de servidores Linux.",
+        "Fundamentos en Redes.",
+        "Fundamentos de la Programación.",
+        "Fundamentos del desarrollo Web.",
+        "Hacking Ético."
+      ]
+    },
+    {
+      "yearEnd": "2025",
+      "location": "Bogotá D.C, Colombia",
+      "title": "Tecnólogo en análisis y desarrollo de software - SENA"
+    }
+  ],
+  "Work": [
+    {
+      "yearEnd": "2025/03 - Actualmente",
+      "location": "Bogotá D.C, Colombia",
+      "occupation": "Desarrollador Full-Stack",
+      "title": "Freelancer",
+      "observation": "Trabajé como desarrollador full-stack freelance mejorando el flujo de reserva de citas para TumediBot.com con Laravel, Livewire, Vue y Vuetify. Integré el calendario con el backend y solucioné problemas de interfaz de usuario y gestión de datos en toda la plataforma."
+    },
+    {
+      "yearEnd": "2025/04 - 2026/02",
+      "location": "Bogotá D.C, Colombia",
+      "occupation": "Desarrollador Full-Stack / Desarrollador Principal",
+      "title": "EDL Ingenieros consultores SAS",
+      "observation": "Desarrollé una plataforma interna para la gestión de empleados, el seguimiento de proyectos y la generación automatizada de documentos con Django y React. Implementé la autenticación segura con JWT y OTP, creé plantillas de documentos dinámicos con GrapesJS y también creé la página de landing de la empresa."
+    }
+  ]
+}

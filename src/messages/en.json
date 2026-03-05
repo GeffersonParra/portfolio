@@ -1,0 +1,73 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "about": "About Me",
+    "projects": "Projects",
+    "brief": "Brief",
+    "contact": "Contact"
+  },
+  "Texts": {
+    "hi": "Hello There!",
+    "hero": "I'm Gefferson, a ",
+    "herobtn1": "Let's Talk!",
+    "herobtn2": "Download CV",
+    "words": "Developer,Problem Solver,Detail Oriented,Constant Learner",
+    "specialized": "Specialized in Web Development",
+    "about": "About Me",
+    "about_me": "I'm a full-stack developer with some experience building real systems using Django, DRF (Django REST Framework), Laravel REST and React.",
+    "about_me2": "I love working on projects where I can solve specific problems: Automize tasks, turn business logic into code, improve UI/UX and structure data efficiently.",
+    "projects": "Projects",
+    "viewOnGithub": "View on Github",
+    "experienceTitle": "Professional Experience",
+    "educationTitle": "Education",
+    "jobTitle": "Work Experience",
+    "currentlyLearningTitle": "Currently learning",
+    "currentlyLearning": "Google Cloud Platform (GCP) on Google Skills",
+    "contactMeTitle": "Contact Me",
+    "questionsTitle": "Questions?",
+    "alwaysAvailableAt": "I'm always available at geffdeveloper@gmail.com",
+    "currentLocation": "Current Location",
+    "yourName": "Your Name",
+    "yourSubject": "Subject",
+    "yourEmail": "Your Email",
+    "yourMessage": "Your Message",
+    "successMessage": "Message sent successfully.",
+    "errorMessage": "There's been a problem while sending the message, try again.",
+    "catchMessage": "There's been a network problem."
+  },
+  "Education": [
+    {
+      "yearEnd": "2025",
+      "location": "Bogotá D.C, Colombia",
+      "title": "Self-directed learning (Platzi/Udemy)",
+      "subtexts": [
+        "Linux servers administration.",
+        "Networking fundamentals.",
+        "Programming foundations.",
+        "Web development essentials.",
+        "Ethical Hacking."
+      ]
+    },
+    {
+      "yearEnd": "2025",
+      "location": "Bogotá D.C, Colombia",
+      "title": "Technologist In Software's Analysis and Development - SENA"
+    }
+  ],
+  "Work": [
+    {
+      "yearEnd": "2025/03 - Up to this day",
+      "location": "Bogotá D.C, Colombia",
+      "occupation": "Full-stack Developer",
+      "title": "Freelancer",
+      "observation": "Worked as a freelance full-stack developer improving the appointment-booking flow for TumediBot.com using Laravel, Livewire, Vue, and Vuetify . I integrated the calendar with the backend and fixed UI and data handling issues across the platform"
+    },
+    {
+      "yearEnd": "2025/04 - 2026/02",
+      "location": "Bogotá D.C, Colombia",
+      "occupation": "Full-stack Developer / Lead Developer",
+      "title": "EDL Ingenieros consultores SAS",
+      "observation": "Developed an internal platform for employee management, project tracking, and automated document generation using Django and React. I implemented secure authentication with JWT and OTP, built dynamic document templates with GrapesJS, also created the company’s landing page"
+    }
+  ]
+}
