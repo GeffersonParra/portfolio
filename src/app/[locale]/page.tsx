@@ -7,43 +7,37 @@ import FourthSection from "../components/FourthSection";
 import FifthSection from "../components/FifthSection";
 import BackgroundCanvas from "../components/BackgroundCanvas";
 import { useLocale } from "next-intl";
-import { useState, useEffect } from "react"; // Añadimos useEffect
+import { useState, useEffect } from "react";
 import { Toaster } from "sonner";
 
 export default function Page() {
+  document.title = "GeffDev"
   const [selectedImage, setSelectedImage] = useState<any | null>(null);
   const locale = useLocale() as "es" | "en";
-
-  // Lógica de Intersection Observer directamente aquí o vía Hook externo
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: "-45% 0px -45% 0px", // Ajuste para que cambie la URL cuando la sección esté centrada
+      rootMargin: "-45% 0px -45% 0px",
       threshold: 0,
     };
-
     const handleIntersect = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute("id");
           if (id) {
-            // Reemplaza la URL sin añadir una nueva entrada al historial (UX limpia)
             window.history.replaceState(null, "", `#${id}`);
           }
         }
       });
     };
-
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
     const sections = document.querySelectorAll("section[id]");
     sections.forEach((section) => observer.observe(section));
-
     return () => observer.disconnect();
   }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Modal de Imagen */}
       {selectedImage && (
         <div 
           className="z-[100] bg-black/80 fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 cursor-zoom-out" 
@@ -64,7 +58,6 @@ export default function Page() {
       
       <BackgroundCanvas>
         <Header />
-        {/* Asegúrate de que cada sección tenga su ID correspondiente */}
         <FirstSection />
         <SecondSection />
         <ThirdSection setSelectedImage={setSelectedImage} />
