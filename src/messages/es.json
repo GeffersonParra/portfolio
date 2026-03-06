@@ -34,6 +34,7 @@
     "successMessage": "Mensaje enviado exitosamente.",
     "errorMessage": "Ha ocurrido un error al enviar el mensaje, intenta nuevamente.",
     "catchMessage": "Ha ocurrido un error de conexión.",
+    "throttleMessage": "Ya has enviado un mensaje, espera 1 hora para enviar otro.",
     "sending": "Enviando..."
   },
   "Education": [

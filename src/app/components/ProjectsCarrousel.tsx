@@ -17,63 +17,53 @@ export const ProjectsCarrousel = ({
   const { theme } = useTheme();
   const locale = useLocale() as "es" | "en";
   const scrollRef = useRef<HTMLDivElement>(null);
+
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollAmount =
+        window.innerWidth < 768 ? clientWidth * 0.8 : clientWidth / 2;
       const scrollTo =
         direction === "left"
-          ? scrollLeft - clientWidth / 2
-          : scrollLeft + clientWidth / 2;
+          ? scrollLeft - scrollAmount
+          : scrollLeft + scrollAmount;
       scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
     }
   };
+
   return (
     <div className="relative w-full group">
-      <div className="absolute -top-12 right-0 flex gap-2">
+      <div className="absolute -top-14 right-0 flex gap-2 z-30">
         <button
           onClick={() => scroll("left")}
-          className="p-2 rounded-full transition-all cursor-pointer"
+          className="p-3 md:p-2 rounded-full transition-all cursor-pointer bg-black/5 dark:bg-white/5 md:bg-transparent"
           style={{ color: "var(--text-primary)" }}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.backgroundColor =
-              "var(--card-overlay-hover)")
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.backgroundColor = "transparent")
-          }
         >
-          <ChevronLeft size={20} />
+          <ChevronLeft size={24} className="md:w-5 md:h-5" />
         </button>
         <button
           onClick={() => scroll("right")}
-          className="p-2 rounded-full transition-all cursor-pointer"
+          className="p-3 md:p-2 rounded-full transition-all cursor-pointer bg-black/5 dark:bg-white/5 md:bg-transparent"
           style={{ color: "var(--text-primary)" }}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.backgroundColor =
-              "var(--card-overlay-hover)")
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.backgroundColor = "transparent")
-          }
         >
-          <ChevronRight size={20} />
+          <ChevronRight size={24} className="md:w-5 md:h-5" />
         </button>
       </div>
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto gap-8 scrollbar-hide snap-x snap-mandatory"
+        className="flex overflow-x-auto gap-4 md:gap-8 scrollbar-hide snap-x snap-mandatory pb-8"
       >
-        {Projects({theme}).map((project: any, idx: number) => (
+        {Projects({ theme }).map((project: any, idx: number) => (
           <div
             key={idx}
-            className="w-xl h-150 shrink-0 border-static snap-start flex flex-col overflow-hidden group/card"
+            className="w-[85vw] sm:w-[450px] md:w-xl h-[550px] md:h-150 shrink-0 border-static snap-start flex flex-col overflow-hidden group/card relative"
             style={{ backgroundColor: "var(--bg-primary)" }}
           >
-            <div className="flex w-full h-full group/gallery">
+            <div className="flex w-full h-3/5 md:h-full group/gallery">
               {project.photos.slice(0, 6).map((photo: any, pIdx: number) => (
                 <div
                   key={pIdx}
-                  className="relative h-full grow transition-all duration-500 ease-in-out hover:[flex-grow:40] cursor-pointer overflow-hidden group-hover/gallery:opacity-40 hover:!opacity-100"
+                  className="relative h-full grow transition-all duration-500 ease-in-out hover:[flex-grow:15] md:hover:[flex-grow:40] cursor-pointer overflow-hidden group-hover/gallery:opacity-40 hover:!opacity-100"
                   onClick={() => setSelectedImage(photo)}
                 >
                   <img
@@ -84,58 +74,66 @@ export const ProjectsCarrousel = ({
                   <div
                     className="absolute inset-0 transition-all duration-500"
                     style={{ backgroundColor: "var(--card-overlay)" }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.backgroundColor = "transparent")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.backgroundColor =
-                        "var(--card-overlay)")
-                    }
                   />
                 </div>
               ))}
             </div>
-            <div className="p-4 w-full">
-              <h3
-                className="text-xl tracking-tighter"
-                style={{ color: "var(--text-primary)" }}
-              >
-                {project.name}
-              </h3>
-              <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-                {project.description[locale]}
-              </p>
-              <p className="mt-4" style={{ color: "var(--text-muted)" }}>
-                {project.builtwith}
-              </p>
-            </div>
-            <div className="p-4 w-full flex justify-between">
-              <div className="flex gap-3">
-                {project.icons.map((icon: any, idx: number) => icon)}
+            <div className="p-4 md:p-6 w-full flex flex-col grow justify-between">
+              <div>
+                <h3
+                  className="text-xl md:text-2xl font-bold tracking-tighter"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  {project.name}
+                </h3>
+                <p
+                  className="text-sm line-clamp-2 md:line-clamp-none mt-1"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  {project.description[locale]}
+                </p>
+                <p
+                  className="mt-3 text-xs md:text-sm font-mono"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  {project.builtwith}
+                </p>
               </div>
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/github flex items-center relative transition-all duration-300"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  <span className="invisible opacity-0 translate-x-4 group-hover/github:visible group-hover/github:opacity-100 group-hover/github:translate-x-0 transition-all duration-300 absolute right-[110%] whitespace-nowrap bg-[#852292] text-white text-xs font-bold py-1 px-3 rounded-full pointer-events-none">
-                    {locale === "es" ? "Ver en GitHub" : "View on GitHub"}
-                  </span>
-                  <FaGithub className="text-[42px] group-hover/github:bg-[#852292] group-hover/github:text-white rounded-full p-1 transition-all duration-300 relative z-10" />
-                </a>
-              )}
-              {project.link && (
-                <a
-                  href={project.link}
-                  className="flex flex-col items-end justify-end relative"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  <TbExternalLink className="text-4xl" />
-                </a>
-              )}
+              <div className="pt-4 flex justify-between items-center border-t border-white/10 mt-auto">
+                <div className="flex gap-2 md:gap-3 flex-wrap">
+                  {project.icons.map((icon: any, idx: number) => (
+                    <div key={idx} className="text-xl md:text-2xl">
+                      {icon}
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center gap-4">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/github flex items-center relative"
+                      style={{ color: "var(--text-primary)" }}
+                    >
+                      <span className="hidden lg:group-hover/github:block absolute bottom-full mb-2 right-0 whitespace-nowrap bg-[#852292] text-white text-[10px] py-1 px-2 rounded">
+                        {locale === "es" ? "GitHub" : "GitHub"}
+                      </span>
+                      <FaGithub className="text-3xl md:text-[42px] hover:text-[#852292] transition-colors" />
+                    </a>
+                  )}
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "var(--text-primary)" }}
+                    >
+                      <TbExternalLink className="text-3xl md:text-4xl" />
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         ))}

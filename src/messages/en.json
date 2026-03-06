@@ -34,6 +34,7 @@
     "successMessage": "Message sent successfully.",
     "errorMessage": "There's been a problem while sending the message, try again.",
     "catchMessage": "There's been a network problem.",
+    "throttleMessage": "You've already sent a message, wait 1 hour to send another.",
     "sending": "Sending..."
   },
   "Education": [
