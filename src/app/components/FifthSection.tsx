@@ -3,9 +3,14 @@
 import { useTranslations } from "next-intl";
 import { IoIosSend } from "react-icons/io";
 import { toast } from "sonner";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+import { useRef } from "react";
+import { useTheme } from "./ThemeProvider";
 
 export default function FifthSection() {
   const t = useTranslations("Texts");
+  const captchaRef = useRef<HCaptcha>(null);
+  const { theme } = useTheme();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -19,12 +24,14 @@ export default function FifthSection() {
       const result = await response.json();
       if (result.success) {
         toast.success(t("successMessage"), { id: toastId });
-        (event.target as HTMLFormElement).reset();
+        captchaRef.current?.resetCaptcha();
       } else {
         toast.error(t("errorMessage"), { id: toastId });
+        captchaRef.current?.resetCaptcha();
       }
     } catch (error) {
       toast.error(t("catchMessage"), { id: toastId });
+      captchaRef.current?.resetCaptcha();
     }
   }
 
@@ -116,6 +123,13 @@ export default function FifthSection() {
                 }
               />
             </div>
+            <div className="my-4">
+        <HCaptcha
+          sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY!}
+          ref={captchaRef}
+          theme={theme === 'dark' ? 'dark' : 'light'}
+        />
+      </div>
           </form>
         </div>
       </div>

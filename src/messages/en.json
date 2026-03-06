@@ -33,7 +33,8 @@
     "yourMessage": "Your Message",
     "successMessage": "Message sent successfully.",
     "errorMessage": "There's been a problem while sending the message, try again.",
-    "catchMessage": "There's been a network problem."
+    "catchMessage": "There's been a network problem.",
+    "sending": "Sending..."
   },
   "Education": [
     {

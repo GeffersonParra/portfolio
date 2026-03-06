@@ -33,7 +33,8 @@
     "yourMessage": "Tu Mensaje",
     "successMessage": "Mensaje enviado exitosamente.",
     "errorMessage": "Ha ocurrido un error al enviar el mensaje, intenta nuevamente.",
-    "catchMessage": "Ha ocurrido un error de conexión."
+    "catchMessage": "Ha ocurrido un error de conexión.",
+    "sending": "Enviando..."
   },
   "Education": [
     {
